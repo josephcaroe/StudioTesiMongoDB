@@ -2,7 +2,9 @@ package com.example.demo.entities;
 
 import dev.morphia.annotations.Embedded;
 import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
 import lombok.*;
+import org.bson.types.ObjectId;
 
 @Getter
 @Setter
@@ -15,6 +17,8 @@ di un documento interno ad un altro*/
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 
 public class Book {
+    @Id
+    private ObjectId id;
     private String title;
     @EqualsAndHashCode.Include private String ISBN;
     private String author;

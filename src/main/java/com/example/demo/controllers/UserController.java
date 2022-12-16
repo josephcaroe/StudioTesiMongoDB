@@ -31,7 +31,6 @@ public class UserController {
 
     @PutMapping("/{username}")
     public ResponseEntity<User> updateUser(@PathVariable String username, @RequestBody UserUpdateDto user){
-        log.info(user.getBook().getISBN());
         Optional<User> us = Optional.of(userCommand.findUserByUsername(username));
         if(us.isPresent()){
             User updated = userCommand.updateUser(username, user);
