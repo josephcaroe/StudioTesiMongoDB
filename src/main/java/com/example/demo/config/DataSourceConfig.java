@@ -19,8 +19,6 @@ public class DataSourceConfig {
             log.info(datastore.toString());
             datastore.getMapper().mapPackage("com.example.demo.entities");
             datastore.ensureIndexes();
-            datastore.save(new User("ciao","ciao","ciao","ciao"));
-
             return datastore;
         }
     }

@@ -7,6 +7,7 @@ import dev.morphia.annotations.Reference;
 import lombok.*;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
     @Id
-    private ObjectId id = new ObjectId(); /*lo creo così...? o creo una factory di ID?*/
+    private ObjectId id; /*lo creo così...? o creo una factory di ID?*/
     @Property("nome")
     private String firstName;
     @Property("cognome")
@@ -25,12 +26,18 @@ public class User {
     @EqualsAndHashCode.Include private String email;
     private String password;
     @Reference
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+    public void addBook(Book b){
+        if(this.books == null){
+            books = new ArrayList<>();
+        }
+        books.add(b);
     }
 }
